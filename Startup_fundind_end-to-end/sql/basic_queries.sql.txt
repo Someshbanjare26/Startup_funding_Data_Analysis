@@ -1,0 +1,30 @@
+--Total funding
+SELECT SUM(funding_amount_usd) AS total_funding
+FROM startup_funding;
+
+--Total startups
+SELECT COUNT(DISTINCT startup_name) AS total_startups
+FROM startup_funding;
+
+-- Funding by year
+SELECT year, SUM(funding_amount_usd) AS total_funding
+FROM startup_funding
+GROUP BY year
+ORDER BY year;
+
+-- Top 10 cities by funding
+SELECT city, SUM(funding_amount_usd) AS total_funding
+FROM startup_funding
+GROUP BY city
+ORDER BY total_funding DESC
+LIMIT 10;
+
+-- Industry wise funding
+SELECT industry, SUM(funding_amount_usd) AS total_funding
+FROM startup_funding
+GROUP BY industry;
+
+-- Average funding by round
+SELECT funding_round, AVG(funding_amount_usd) AS avg_funding
+FROM startup_funding
+GROUP BY funding_round;
